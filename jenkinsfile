@@ -1,4 +1,4 @@
-def registry = 'https://https://venkatesh142.jfrog.io/ui/get_started/'
+def registry = 'https://venkatesh142.jfrog.io/artifactory'
 
 pipeline {
     agent {
