@@ -122,7 +122,7 @@ resource "aws_eks_cluster" "eks" {
   role_arn = aws_iam_role.master.arn
 
   vpc_config {
-    subnet_ids = [var.subnet_ids[0],var.subnet_ids[1]]
+    subnet_ids = [var.subnet_ids[0],var.subnet_ids[1],var.subnet_ids[2],var.subnet_ids[3]]
   }
   
   depends_on = [
@@ -141,7 +141,7 @@ resource "aws_eks_node_group" "backend" {
   cluster_name    = aws_eks_cluster.eks.name
   node_group_name = "dev"
   node_role_arn   = aws_iam_role.worker.arn
-  subnet_ids = [var.subnet_ids[0],var.subnet_ids[1]]
+  subnet_ids = [var.subnet_ids[0],var.subnet_ids[1],var.subnet_ids[2],ar.subnet_ids[3]]
   capacity_type = "ON_DEMAND"
   disk_size = "20"
   instance_types = ["t2.small"]
@@ -153,8 +153,8 @@ resource "aws_eks_node_group" "backend" {
   labels =  tomap({env = "dev"})
   
   scaling_config {
-    desired_size = 2
-    max_size     = 3
+    desired_size = 4
+    max_size     = 5
     min_size     = 1
   }
 
